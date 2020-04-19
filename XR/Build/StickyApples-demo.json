@@ -1,0 +1,16 @@
+{
+"companyName": "KristinMcWharter",
+"productName": "StickyApples",
+"productVersion": "1.0",
+"dataUrl": "StickyApples-demo.data.unityweb",
+"wasmCodeUrl": "StickyApples-demo.wasm.code.unityweb",
+"wasmFrameworkUrl": "StickyApples-demo.wasm.framework.unityweb",
+"wasmSymbolsUrl": "StickyApples-demo.wasm.symbols.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.10f1"
+}
