@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- These tags are needed for enabling experimental Chrome APIs via Chrome's Origin-Trial program (Android, Windows): https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/available-trials.md#current-experimental-features -->
@@ -14,44 +14,40 @@
     <link rel="icon" href="favicon.ico">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" type="text/css" href="styles/webxr.css">
-
+    <script src="motion.js"></script>
     <script src="lib/telemetry.js"></script>
-    <script>
-      MozillaResearch.telemetry.start({
-        analytics: true,
-        errorLogging: true,
-        performance: true
-      });
-      MozillaResearch.telemetry.performance.mark('LoaderParsingStart');
-    </script>
+    <script>MozillaResearch.telemetry.start({
+            analytics: true,
+            errorLogging: true,
+            performance: true
+        });
+        MozillaResearch.telemetry.performance.mark('LoaderParsingStart');</script>
 
     <script src="Build/UnityLoader.js"></script>
-    <script>
-        UnityLoader.SystemInfo.mobile = false;  // Workaround to force `UnityLoader` to actually load on mobile.
+    <script>UnityLoader.SystemInfo.mobile = false;  // Workaround to force `UnityLoader` to actually load on mobile.
         window.gameInstance = UnityLoader.instantiate('gameContainer', 'Build/StickyApples-demo.json', {
-          Module: {
-            // `preserveDrawingBuffer` is needed for WebVR content to be mirrored to the `<canvas>`.
-            webglContextAttributes: {
-              preserveDrawingBuffer: true
-            }
-          },
-          onProgress: unityProgress
+            Module: {
+                // `preserveDrawingBuffer` is needed for WebVR content to be mirrored to the `<canvas>`.
+                webglContextAttributes: {
+                    preserveDrawingBuffer: true
+                }
+            },
+            onProgress: unityProgress
         });
 
-        function unityProgress (gameInstance, progress) {
-          if (!gameInstance.progress) {
-            gameInstance.loader = document.getElementById('loader');
-            gameInstance.progress = document.getElementById('progress');
-            gameInstance.loading = document.getElementById('loading');
-            document.dispatchEvent(new CustomEvent('UnityProgressStart'));
-          }
-          gameInstance.progress.style.width = (100 * progress) + '%';
-          if (progress === 1) {
-            document.dispatchEvent(new CustomEvent('UnityLoaded'));
-          }
-        }
-    </script>
-  </head>
+        function unityProgress(gameInstance, progress) {
+            if (!gameInstance.progress) {
+                gameInstance.loader = document.getElementById('loader');
+                gameInstance.progress = document.getElementById('progress');
+                gameInstance.loading = document.getElementById('loading');
+                document.dispatchEvent(new CustomEvent('UnityProgressStart'));
+            }
+            gameInstance.progress.style.width = (100 * progress) + '%';
+            if (progress === 1) {
+                document.dispatchEvent(new CustomEvent('UnityLoaded'));
+            }
+        }</script>
+</head>
   <body>
     <div id="loader">
       <div id="loading" class="loading">Loading</div>
