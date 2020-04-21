@@ -28,7 +28,7 @@
     <script src="Build/UnityLoader.js"></script>
     <script>
         UnityLoader.SystemInfo.mobile = false;  // Workaround to force `UnityLoader` to actually load on mobile.
-        window.gameInstance = UnityLoader.instantiate('gameContainer', 'Build/webVR.json', {
+        window.gameInstance = UnityLoader.instantiate('gameContainer', 'Build/XR.json', {
           Module: {
             // `preserveDrawingBuffer` is needed for WebVR content to be mirrored to the `<canvas>`.
             webglContextAttributes: {
@@ -50,7 +50,6 @@
             document.dispatchEvent(new CustomEvent('UnityLoaded'));
           }
         }
-		
     </script>
   </head>
   <body>
@@ -75,30 +74,7 @@
     </div>
 
     <button id="enterxr" value="Enter VR"></button>
-	<script>
-		if (location.protocol != 'https:') {
-   location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-  }
-  function requestT () {
 
-      if (typeof(DeviceMotionEvent) !== 'undefined' && typeof(DeviceMotionEvent.requestPermission) === 'function') {
-          alert('enter');
-          DeviceMotionEvent.requestPermission()
-          .then(response => {
-          alert('resp'+ response);
-            if (response == 'granted') {
-              window.addEventListener('devicemotion', (e) => {
-                // do something with e
-              })
-            }
-          })
-      .catch(console.error)
-      }else {
-          alert('DeviceMotionEvent is not defined');
-      }
-  }
-  document.getElementById('enterxr').onclick = requestT;
-	  </script>
     <div id="performance" data-enabled="false"></div>
 
     <script src="vendor/gl-matrix-min.js"></script>
