@@ -8,9 +8,9 @@
     <meta http-equiv="origin-trial" data-feature="Generic Sensors" data-expires="2018-04-10" content="Aokv0ODVMUPIswIBi6DnpAIjhWefEd8gD8GpVgdYgETj0C5+/3kKMzZE/FOrBwHcpBO6LHuVRrIw3yOT8EMmJAYAAABQeyJvcmlnaW4iOiJodHRwczovL2dpdGh1Yi5pbzo0NDMiLCJmZWF0dXJlIjoiR2VuZXJpY1NlbnNvciIsImV4cGlyeSI6MTUyMzMxODQwMH0=">
     <!-- Origin Trial Token, feature = WebVR (For Chrome M62+), origin = https://github.io, expires = 2018-05-07 -->
     <meta http-equiv="origin-trial" data-feature="WebXR (For Chrome M62+)" data-expires="2018-05-07" content="AgINztgDnjFV8da2D9SSzIITBRlHX8mduCR7DXfENxjr9ALduKOxBDdn2n66auQSlljVyhnRWWerxC0BWbE8pAoAAABOeyJvcmlnaW4iOiJodHRwczovL2dpdGh1Yi5pbzo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjFNNjIiLCJleHBpcnkiOjE1MjU3MjU4MDh9">
-    <title>Sticky Apples | StickyApples</title>
-    <meta name="description" content="Web XR Sticky Apples Demo">
-    Kristin McWharter
+    <title>Kristin McWharter | StickyApples</title>
+    <meta name="description" content="Sticky Apples Game">
+    %UNITY_CUSTOM_META_TAGS%
     <link rel="icon" href="favicon.ico">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" type="text/css" href="styles/webxr.css">
@@ -28,7 +28,7 @@
     <script src="Build/UnityLoader.js"></script>
     <script>
         UnityLoader.SystemInfo.mobile = false;  // Workaround to force `UnityLoader` to actually load on mobile.
-        window.gameInstance = UnityLoader.instantiate('gameContainer', 'Build/XR.json', {
+        window.gameInstance = UnityLoader.instantiate('gameContainer', 'Build/webVR.json', {
           Module: {
             // `preserveDrawingBuffer` is needed for WebVR content to be mirrored to the `<canvas>`.
             webglContextAttributes: {
@@ -50,6 +50,7 @@
             document.dispatchEvent(new CustomEvent('UnityLoaded'));
           }
         }
+		
     </script>
   </head>
   <body>
@@ -74,7 +75,30 @@
     </div>
 
     <button id="enterxr" value="Enter VR"></button>
+	<script>
+		if (location.protocol != 'https:') {
+   location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+  }
+  function requestT () {
 
+      if (typeof(DeviceMotionEvent) !== 'undefined' && typeof(DeviceMotionEvent.requestPermission) === 'function') {
+          alert('enter');
+          DeviceMotionEvent.requestPermission()
+          .then(response => {
+          alert('resp'+ response);
+            if (response == 'granted') {
+              window.addEventListener('devicemotion', (e) => {
+                // do something with e
+              })
+            }
+          })
+      .catch(console.error)
+      }else {
+          alert('DeviceMotionEvent is not defined');
+      }
+  }
+  document.getElementById('enterxr').onclick = requestT;
+	  </script>
     <div id="performance" data-enabled="false"></div>
 
     <script src="vendor/gl-matrix-min.js"></script>
