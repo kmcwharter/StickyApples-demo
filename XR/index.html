@@ -55,6 +55,25 @@
         document.dispatchEvent(new CustomEvent('UnityLoaded'));
       }
     }
+    
+    let frame = document.getElementbyId("gameContainer");
+    frame.addEventListener(
+    "mouseout",
+    function (event) {
+      //mute
+      frame.mute();
+    },
+    false
+  );
+
+  frame.addEventListener(
+    "mouseover",
+    function (event) {
+      // unmute
+      frame.muted = false;
+    },
+    false
+  );
   </script>
 </head>
 
@@ -67,20 +86,6 @@
         <div id="game">
           <div id="gameContainer"></div>
         </div>
-
-        <div id="instruction">
-          <div id="novr" class="panel center">
-            <h3>You&rsquo;ll need a <a href="https://developer.mozilla.com/topics/mixed-reality/">WebXR-enabled
-                browser</a> and VR headset to fully enjoy this experience.</h3>
-            <p><img src="mousedrag.png" width="70" alt="Click-and-drag your mouse"></p>
-            <p>In the meantime, <strong><em>click and drag</em></strong> to have a look around!</p>
-            <p>
-              <button class="confirm">Continue</button>
-            </p>
-          </div>
-        </div>
-
-        <button id="enterxr" value="Enter VR" class="hidden"></button>
         <div id="performance" data-enabled="false"></div>
     <script src="vendor/gl-matrix-min.js"></script>
     <script src="webxr.js"></script>
