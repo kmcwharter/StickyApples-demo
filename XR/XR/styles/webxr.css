@@ -8,7 +8,7 @@ html, body {
 }
 
 html, body, #canvas, #loader {
-  height: 100%;
+  height: 95%;
   left: 0;
   margin: 0;
   padding: 0;
@@ -80,6 +80,7 @@ a:link, a:visited {
   display: block;
   position: absolute;
   z-index: 0;
+  top:0;
 }
 
 #status {
