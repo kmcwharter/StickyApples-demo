@@ -74,13 +74,13 @@
 <script>
   window.onload=function(){    
     let frame = document.getElementById("gameContainer");
-  if(frame){
+  if(frame != null){
     console.log("frame found");
     frame.addEventListener(
     "mouseout",
     function (event) {
       //mute
-      frame.mute();
+      frame.muted=true;
       console.log("mute");
     },
     false
