@@ -55,7 +55,7 @@
         document.dispatchEvent(new CustomEvent('UnityLoaded'));
       }
     }
-    
+window.onload=function(){    
     let frame = document.getElementById("gameContainer");
     frame.addEventListener(
     "mouseout",
@@ -74,6 +74,7 @@
     },
     false
   );
+}
   </script>
 </head>
 
