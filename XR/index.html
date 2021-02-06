@@ -55,28 +55,6 @@
         document.dispatchEvent(new CustomEvent('UnityLoaded'));
       }
     }
-window.onload=function(){    
-    let frame = document.getElementById("gameContainer");
-  if(frame){
-    frame.addEventListener(
-    "mouseout",
-    function (event) {
-      //mute
-      frame.mute();
-    },
-    false
-  );
-
-  frame.addEventListener(
-    "mouseover",
-    function (event) {
-      // unmute
-      frame.muted = false;
-    },
-    false
-  );
-}
-}
   </script>
 </head>
 
@@ -93,5 +71,31 @@ window.onload=function(){
     <script src="vendor/gl-matrix-min.js"></script>
     <script src="webxr.js"></script>
 </body>
+<script>
+  window.onload=function(){    
+    let frame = document.getElementById("gameContainer");
+  if(frame){
+    console.log("frame found");
+    frame.addEventListener(
+    "mouseout",
+    function (event) {
+      //mute
+      frame.mute();
+      console.log("mute");
+    },
+    false
+  );
 
+  frame.addEventListener(
+    "mouseover",
+    function (event) {
+      // unmute
+      frame.muted = false;
+      console.log("unmute");
+    },
+    false
+  );
+}
+}
+  </script>
 </html>
